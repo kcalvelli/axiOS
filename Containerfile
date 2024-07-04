@@ -19,10 +19,10 @@ RUN rpm-ostree install \
     geary && \
     ostree container commit
 
-RUN rpm-ostree uninstall \
-    firefox \
-    firefox-langpacks && \
-    ostree container commit
+#RUN rpm-ostree uninstall \
+#    firefox \
+#    firefox-langpacks && \
+#    ostree container commit
 
 # Set up display manager
 RUN rm -f /etc/systemd/system/display-manager.service && \
