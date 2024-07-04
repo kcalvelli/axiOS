@@ -19,6 +19,10 @@ RUN rpm-ostree install cosmic-desktop
 RUN rm -f /etc/systemd/system/display-manager.service && \
     ln -s /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display-manager.service
 
-RUN ostree container commit && \
-    mkdir -p /var/tmp && chmod -R 1777 /var/tmp
+COPY build.sh /tmp/build.sh
+
+RUN mkdir -p /var/lib/alternatives && \
+        /tmp/build.sh && \  
+        ostree container commit && \
+        mkdir -p /var/tmp && chmod -R 1777 /var/tmp     
 
