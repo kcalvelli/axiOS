@@ -8,6 +8,9 @@ RELEASE="$(rpm -E %fedora)"
 rm -f /etc/systemd/system/display-manager.service
 ln -s /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display-manager.service
 
+# Blindly copied this
+mkdir -p /var/tmp && chmod -R 1777 /var/tmp
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
