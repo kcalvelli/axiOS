@@ -4,6 +4,9 @@ set -ouex pipefail
 
 RELEASE="$(rpm -E %fedora)"
 
+# Setup display manager
+rm -f /etc/systemd/system/display-manager.service
+ln -s /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display-manager.service
 
 ### Install packages
 
@@ -13,7 +16,7 @@ RELEASE="$(rpm -E %fedora)"
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-rpm-ostree install screen
+#rpm-ostree install screen
 
 # this would install a package from rpmfusion
 # rpm-ostree install vlc
