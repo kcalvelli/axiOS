@@ -12,7 +12,4 @@ ln -s /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display
 rpm-ostree override remove firefox-langpacks firefox
 rpm-ostree install geary 
 
-# No idea if this will work
-flatpak remove org.mozilla.Thunderbird
-
 systemctl enable podman.socket
