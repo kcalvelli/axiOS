@@ -96,8 +96,13 @@ in
         prev.claude-code.overrideAttrs (_old: {
           inherit (manifest) version;
           src = prev.fetchurl {
-            url = "https://downloads.claude.ai/claude-code-releases/${manifest.version}/${platformKey}/claude";
-            # checksum is the upstream-published sha256 (hex) of the binary.
+            # nixpkgs' recipe unzstd's the src, so the manifest points `binary`
+            # at `claude.zst` (see scripts/update-claude-code.sh) — fetch that,
+            # not the raw ELF, or `unzstd` dies with "unsupported format".
+            url = "https://downloads.claude.ai/claude-code-releases/${manifest.version}/${platformKey}/${
+              manifest.platforms.${platformKey}.binary
+            }";
+            # checksum is our sha256 (hex) of the .zst artifact.
             sha256 = manifest.platforms.${platformKey}.checksum;
           };
         });
