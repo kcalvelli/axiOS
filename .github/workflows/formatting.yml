@@ -1,9 +1,12 @@
 name: Code Formatting
 
+# Runs on every PR — unfiltered — because this is a required check. A path
+# filter on pull_request means the workflow is skipped (and never reports a
+# status) on any PR touching no .nix files, leaving branch protection waiting
+# forever on a check that never arrives. Ask the flake.lock / manifest bumpers
+# how that went. Push keeps its filter; only PR gating must be unconditional.
 on:
   pull_request:
-    paths:
-      - '**.nix'
   push:
     branches:
       - master
