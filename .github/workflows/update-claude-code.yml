@@ -57,7 +57,7 @@ jobs:
       - name: Mint app token
         id: app-token
         if: steps.update.outputs.updated == 'true'
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.AUTOMATION_APP_ID }}
           private-key: ${{ secrets.AUTOMATION_APP_PRIVATE_KEY }}
